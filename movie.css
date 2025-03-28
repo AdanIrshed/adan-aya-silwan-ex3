@@ -1,0 +1,320 @@
+/* css.movie */
+
+/*Adan Irshed, Aya Ismail, Silwan Omar*/
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 1rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(images/background.png);
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px #999999;
+    font-family: Verdana, Calibri, sans-serif;
+}
+
+#header {
+    background-repeat: repeat-x;
+    background-image: url(images/bannerbg.png);
+    height: 4rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+#main-container {
+    width: 90%;
+    margin:  auto;
+    border: 4px solid gray;
+    border-radius: 40px;
+    height: 100%;
+ 
+    overflow: hidden; 
+
+  
+}
+.aggregate-score {
+    font-weight: bold;
+    color: red;
+    font-size: 4rem;
+    line-height: 1.2;
+    position: relative;
+    top: -10px;
+    height: 90px;
+}
+
+#critic-rating-banner {
+    background-image: url(images/rbg.png);
+    background-repeat: repeat-x;
+    height: auto;
+    width: 100%;
+    display: block; 
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+    text-align: left;
+}
+
+
+#movie-info {
+    float: right;
+    background-color: #5D8B3E;
+    width: 25%;
+    min-width: 250px;
+    border-top-right-radius: 40px;
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+ 
+    height: auto;
+ 
+    right: 0;
+    top: 0;
+    bottom: 0; 
+}
+
+
+
+.poster-image, #content-head-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#critic-reviews {
+    width: 75%; 
+    display: flex;
+    flex-direction: column;
+}
+
+#reviews-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
+  width: 100%; 
+  
+}
+
+.left, .right {
+    width: 42.5%; /* Adjusted width to match 30% of the main container */
+}
+
+.left {
+    margin-left: 5%;
+}
+
+.right {
+    margin-right: 5%;
+}
+.review-block {
+    position: relative;
+    margin-bottom: 1.5rem;
+   
+}
+
+.review-icon {
+    margin-right: 5px;
+    float: left;
+    flex-shrink: 0
+}
+
+.review-text {
+    font-weight: bold;
+    font-size: 1rem;
+    flex: 1; /* Ensures text takes the remaining space */
+    text-align: start;
+  
+}
+
+.review-box{
+   padding: 8px; 
+    background-color: #E3DAA3;
+    border: 2px solid gray;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    text-align: start;
+
+}
+.critic-details {
+    position: relative;
+    align-items: center;
+
+    display: flex;
+    gap: 5px;
+}
+
+.font-italic {
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.general-overview-img {
+    border-top-right-radius: 40px;
+    width: 100%;
+}
+
+.general-overview-dl {
+    
+    color: #F1F1E4DA;
+    font-family: Calibri, sans-serif;
+        font-size: 1rem;
+        margin: 1.5rem;
+        max-width: 400px;
+}
+
+.general-overview-dt {
+    font-weight: bold;
+}
+
+
+.info {
+    margin-bottom: 0.9rem;
+}
+
+.page-footer {
+    background-color: #5D8B3E;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 0.5rem;
+    position: relative; /* Ensure it stays at the bottom */
+
+
+}
+
+.movie-link {
+    color: darkblue;
+}
+
+@media screen and (max-width:768px) {
+ 
+    #body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    #header {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    #movie-info {
+        width: 100%;
+        border-radius: 0;
+        margin-bottom: 1rem;
+        flex-direction: column; 
+        position: relative; /* Change from absolute to relative */
+    
+    }
+
+    #poster {
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .content {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    #critic-reviews {
+        width: 100%;
+    }
+    .general-overview {
+        width: 100%;
+    }
+    .content-head {
+        position: relative;
+        top: 0;
+        width: 100%;
+    }
+
+    .review-box {
+        display: flex;
+        align-items: flex-start;
+    }
+    .review-text {
+        text-align: start ;
+    }
+    #content-head-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+ 
+
+    .left {
+        width: 90%;
+        position: relative;
+        text-align: center;
+    }
+
+    .review-icon {
+        display: inline-block;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    .right {
+        width: 90%;
+        position: relative;
+        text-align: center;
+        margin-left: 5%;
+
+    }
+    #critic-rating-banner {
+        width: 100%;  
+        display: block;
+        margin: 0 auto;
+        max-width: 100vw;
+
+      }
+      #critic-rating-banner img {
+        max-width: 100%;
+        height: auto;
+    }
+    #reviews-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .review-block {
+        width: 100%;
+    }
+}
