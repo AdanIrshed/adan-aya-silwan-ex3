@@ -1,0 +1,235 @@
+<!-- ejs.movie -->
+
+<!--Adan Irshed, Aya Ismail, Silwan Omar-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rancid Tomatoes</title>
+    <link href="/images/fresh.gif" type="image/x-icon" rel="shortcut icon" />
+    <link href="movie.css" type="text/css" rel="stylesheet">
+    <link href="movie.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header">
+        <img src="/images/banner.png" alt="Rancid Tomatoes">
+    </header>
+
+    <h1>
+        <%= movie.title %> (<%= movie.year %>)
+    </h1>
+
+    <div id="main-container">
+        <div id="movie-info">
+            <img id="poster" class="poster-image" alt="Movie Poster">
+
+            <script>
+                const movieCode = "<%= movie.FilmCode %>";
+                const posterElement = document.getElementById('poster');
+
+                // Try .jpg first, then .png if .jpg doesn't work
+                const extensions = ['.jpg', '.png'];
+
+                let posterLoaded = false;
+                extensions.forEach(extension => {
+                    if (!posterLoaded) {
+                        let imgPath = `/images/${movieCode}/poster${extension}`;
+                        let img = new Image();
+
+                        img.onload = function () {
+                            posterElement.src = imgPath; // If image loads, set the src to the correct path
+                            posterLoaded = true; // Stop checking further formats
+                        };
+
+                        img.src = imgPath; // Start loading the image
+                    }
+                });
+            </script>
+            <dl class="general-overview-dl">
+                <div class="info">
+                    <dt><span class="general-overview-dt">STARRING</span></dt>
+                    <dd>
+                        <% if (Array.isArray(movie.starring)) { %>
+                            <% movie.starring.forEach(actor=> { %>
+                                <%= actor %><br>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <p>
+                                                <%= movie.starring %>
+                                            </p>
+                                            <% } %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">DIRECTOR</span></dt>
+                    <dd>
+                        <% if (Array.isArray(movie.starring)) { %>
+                            <% movie.director.forEach(actor=> { %>
+                                <%= actor %><br>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <p>
+                                                <%= movie.director %>
+                                            </p>
+                                            <% } %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">RATING</span></dt>
+                    <dd>
+                        <%= movie.Rating %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">THEATRICAL RELEASE</span></dt>
+                    <dd>
+                        <%= movie.TheatricalRelease %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">MOVIE SYNOPSIS</span></dt>
+                    <dd>
+                        <%= movie.MovieSynopsis %>
+                    </dd>
+                </div>
+                
+                <div class="info">
+                    <dt><span class="general-overview-dt">MPAA RATING</span></dt>
+                    <dd>
+                        <%= movie.MpaaRating %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">RELEASE COMPANY</span></dt>
+                    <dd>
+                        <%= movie.ReleaseCompany %>
+                    </dd>
+                </div>
+
+                 <div class="info">
+                    <dt><span class="general-overview-dt">RUNTIME</span></dt>
+                    <dd>
+                        <%= movie.runtime %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">GENRE</span></dt>
+                    <dd>
+                        <% if (Array.isArray(movie.starring)) { %>
+                            <% movie.genre.forEach(actor=> { %>
+                                <%= actor %><br>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <p>
+                                                <%= movie.genre %>
+                                            </p>
+                                            <% } %>
+                    </dd>
+                </div>
+
+                <div class="info">
+                    <dt><span class="general-overview-dt">BOXOFFICE</span></dt>
+                    <dd>
+                        <%= movie.BoxOffice %>
+                    </dd>
+                
+                </div>
+               
+                <div class="info">
+                    <dt><span class="general-overview-dt">LINKS</span></dt>
+                    <dd>
+                        <% if (movie.links !== "N/A") { %>
+                            <% const linksArray = movie.links.split(', '); %>
+                            <% linksArray.forEach(link => { %>
+                                <a href="<%= link.split(': ')[1] %>" class="movie-link" target="_blank" rel="noopener noreferrer">
+                                    <%= link.split(': ')[0] %>
+                                </a><br>
+                            <% }); %>
+                        <% } else { %>
+                            <span class="no-link"><%= movie.links %></span>
+                        <% } %>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+        <div id="critic-reviews">
+            <div id="critic-rating-banner" class="banner">
+                <img id="content-head-image" src="/images/<%= parseInt(movie.score) >= 60 ? 'freshbig.png' : 'rottenbig.png' %>" alt="<%= parseInt(movie.score) >= 60 ? 'Fresh' : 'Rotten' %>">
+
+                                    <span class="aggregate-score">
+                                        <%= movie.score %>
+                                    </span>
+            </div>
+
+                <div id="reviews-section">
+                    <div class="left">
+                        <% let half=Math.ceil(reviews.length / 2); %>
+                            <% for (let i=0; i < half; i++) { %>
+                                <div class="review-block">
+                                    <div class="review-box">
+                                        <div class="review-text">
+                                            <img class="review-icon"
+                                                src="images/<%= parseInt(movie.score) >= 60 ? 'fresh.gif' : 'rotten.gif' %>"
+                                                alt="<%= parseInt(movie.score) >= 60 ? 'Fresh' : 'Rotten' %>">
+                                                <q>
+                                                <%= reviews[i].text %>
+                                                </q>
+                                        </div>
+                                    </div>
+
+                                    <div class="critic-details">
+                                        <img src="/images/critic.gif" alt="Critic">
+                                        <%= reviews[i].critic %>
+                                            <span class="font-italic">
+                                                <%= reviews[i].name %><br>
+                                                    <%= reviews[i].affiliation %>
+                                            </span>
+                                    </div>
+                                </div>
+                                <% } %>
+                    </div>
+
+                    <div class="right">
+                        <% for (let i=half; i < reviews.length; i++) { %>
+                            <div class="review-block">
+                                <div class="review-box">
+                                    <div class="review-text">
+                                    <img class="review-icon"
+                                        src="images/<%= parseInt(movie.score) >= 60 ? 'fresh.gif' : 'rotten.gif' %>"
+                                        alt="<%= parseInt(movie.score) >= 60 ? 'Fresh' : 'Rotten' %>">
+                                    <q>
+                                        <%= reviews[i].text %>
+                                    </q>
+                                </div>
+                                </div>
+                                <div class="critic-details">
+                                    <img src="/images/critic.gif" alt="Critic">
+                                    <%= reviews[i].critic %>
+                                        <span class="font-italic">
+                                            <%= reviews[i].name %><br>
+                                                <%= reviews[i].affiliation %>
+                                        </span>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+        </div>
+        <footer class="page-footer">
+            <%= reviews.length %> of <%= reviews.length %>
+        </footer>
+
+    </div>
+</body>
+
+</html>
